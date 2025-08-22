@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality Custom Displays</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #e9c46a;
+            --accent: #2a9d8f;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gray: #6c757d;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.5s ease;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background: #23867b;
+            transform: translateY(-2px);
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover {
+            color: var(--secondary);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&h=800&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 8rem 0;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .about-text h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-features {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .about-features li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .about-features li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background-color: #f1f5f9;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        .gallery-item.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-img {
+            height: 220px;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.05);
+        }
+
+        .gallery-text {
+            padding: 1.2rem;
+        }
+
+        .gallery-text h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .gallery-text p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            overflow: auto;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 900px;
+            margin: 2rem;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-img {
+            width: 100%;
+            max-height: 60vh;
+            object-fit: contain;
+        }
+
+        .modal-text {
+            padding: 1.5rem;
+        }
+
+        .modal-title {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-desc {
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(to right, var(--primary), #3a506b);
+            color: white;
+        }
+
+        .testimonials .section-title {
+            color: white;
+        }
+
+        .testimonials .section-title::after {
+            background-color: var(--secondary);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .testimonial-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .testimonial {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            margin-bottom: 0.2rem;
+        }
+
+        /* Contact Form */
+        .contact {
+            background-color: #f8f9fa;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.2);
+        }
+
+        textarea.form-input {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            background: #23867b;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-logo span {
+            color: var(--secondary);
+        }
+
+        .footer-heading {
+            font-size: 1.2rem;
+            margin-bottom: 1.2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                background: var(--primary);
+                width: 80%;
+                height: calc(100vh - 70px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 2rem;
+                transition: var(--transition);
+                box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-menu li {
+                margin: 1.5rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">QualityCustom<span>Displays</span></a>
+            <button class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Custom Cabinets & Displays Crafted to Perfection</h1>
+            <p>Transform your tradeshow space with beautifully crafted, custom-made cabinets and displays designed for your unique needs.</p>
+            <a href="#contact" class="btn">Request a Consultation</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Precision Craftsmanship Meets Innovative Design</h2>
+                    <p>At Quality Custom Displays, we create custom cabinets and displays that perfectly blend functionality with aesthetic appeal. With over 15 years of experience, our master craftsmen pay attention to every detail to deliver exceptional quality.</p>
+                    <p>We work with a variety of materials including hardwoods, glass, and metal to create pieces that reflect your style while serving your practical needs.</p>
+                    <ul class="about-features">
+                        <li>Custom designed to your specifications</li>
+                        <li>Premium quality materials</li>
+                        <li>Expert craftsmanship</li>
+                        <li>On-time completion</li>
+                        <li>Installation included</li>
+                    </ul>
+                </div>
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1601760561441-16420502c7e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Craftsman working on custom cabinet">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section gallery">
+        <div class="container">
+            <h2 class="section-title">Our Work</h2>
+            <div class="gallery-grid">
+                <!-- Cabinet Items -->
+                <div class="gallery-item" data-category="cabinets kitchen">
+                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a4b2c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Modern kitchen cabinets" class="gallery-img">
+                    <div class="gallery-text">
+                        <h3>Modern Kitchen Cabinets</h3>
+                        <p>White shaker style cabinets with soft-close hinges and custom pull-out organizers.</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="cabinets office">
+                    <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Office storage cabinets" class="gallery-img">
+                    <div class="gallery-text">
+                        <h3>Office Storage Solution</h3>
+                        <p>Custom built-in cabinets for home office with file storage and display shelves.</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="cabinets">
+                    <img src="https://images.unsplash.com/photo-1581539250439-c96689b516dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Bathroom vanity" class="gallery-img">
+                    <div class="gallery-text">
+                        <h3>Custom Bathroom Vanity</h3>
+                        <p>Floating vanity with natural wood finish and marble countertop.</p>
+                    </div>
+                </div>
+
+                <!-- Display Items -->
+                <div class="gallery-item" data-category="displays">
+                    <img src="https://images.unsplash.com/photo-1593085260707-5377ba37f868?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Retail display case" class="gallery-img">
+                    <div class="gallery-text">
+                        <h3>Retail Display Case</h3>
+                        <p>Custom glass display case with integrated lighting for retail store.</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="displays">
+                    <img src="https://images.unsplash.com/photo-1616594039964-ae902f0c1497?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Bookcase wall unit" class="gallery-img">
+                    <div class="gallery-text">
+                        <h3>Built-in Bookcase</h3>
+                        <p>Floor-to-ceiling bookcase with adjustable shelves and cabinet storage.</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="displays kitchen">
+                    <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Kitchen display shelves" class="gallery-img">
+                    <div class="gallery-text">
+                        <h3>Kitchen Display Shelving</h3>
+                        <p>Open shelving with custom brackets for displaying kitchenware.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal" id="imageModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <img class="modal-img" id="modalImage" src="" alt="">
+            <div class="modal-text">
+                <h3 class="modal-title" id="modalTitle"></h3>
+                <p class="modal-desc" id="modalDesc"></p>
+                <p class="modal-full-desc" id="modalFullDesc"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p class="testimonial-text">"The custom cabinets ArtisanCraft created for our kitchen completely transformed the space. The quality is exceptional and the attention to detail is remarkable."</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sarah Johnson" class="author-img">
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>Homeowner</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"We needed custom displays for our retail store and ArtisanCraft delivered beyond our expectations. The displays are both functional and beautiful."</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen" class="author-img">
+                        <div class="author-info">
+                            <h4>Michael Chen</h4>
+                            <p>Boutique Owner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title">Request an Estimate</h2>
+            <form id="estimateForm" class="contact-form">
+                <div class="form-group">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" id="name" class="form-input" placeholder="Your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" id="email" class="form-input" placeholder="Your email address" required>
+                </div>
+                <div class="form-group">
+                    <label for="project" class="form-label">Project Description</label>
+                    <textarea id="project" class="form-input" placeholder="Tell us about your project needs, dimensions, and any specific requirements" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Request</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">Artisan<span>Craft</span></div>
+                    <p>Creating beautiful, functional custom cabinets and displays for homes and businesses since 2005.</p>
+                </div>
+                <div class="footer-links">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#gallery">Our Work</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Get Estimate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3 class="footer-heading">Contact Us</h3>
+                    <p>123 Craftsmanship Ave</p>
+                    <p>Artisanville, CA 94301</p>
+                    <p>Phone: (555) 123-4567</p>
+                    <p>Email: info@artisancraft.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 ArtisanCraft. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.innerHTML = navMenu.classList.contains('active') ?
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Gallery Modal Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDesc = document.getElementById('modalDesc');
+            const modalFullDesc = document.getElementById('modalFullDesc');
+            const closeModal = document.querySelector('.close-modal');
+
+            // Extended descriptions for modal
+            const fullDescriptions = {
+                0: "These modern kitchen cabinets feature a classic shaker style design with a crisp white finish. We incorporated soft-close hinges and drawers for quiet operation. The custom pull-out organizers include spice racks, utensil dividers, and a dedicated storage space for cutting boards and baking sheets. Crafted from premium maple wood with a durable lacquer finish.",
+                1: "This home office storage solution features built-in cabinets that maximize vertical space. The design includes file storage drawers, adjustable shelving for books and decor, and closed cabinets for hiding office supplies. Finished with a rich walnut stain and matte protective coating.",
+                2: "This floating bathroom vanity provides a modern, spacious feel to the bathroom. Crafted from solid oak with a natural oil finish that highlights the wood grain. Features include a marble countertop with an integrated sink, two soft-close drawers, and open shelving for towel storage.",
+                3: "This retail display case was designed for a jewelry store, featuring tempered glass on all sides for maximum visibility. The integrated LED lighting provides perfect illumination for the products. The case includes locking doors and adjustable glass shelves to accommodate various product sizes.",
+                4: "This built-in bookcase transforms an entire wall into a functional storage and display area. Features include adjustable shelves to accommodate books of different sizes, cabinet bases with hidden storage, and crown molding that matches the room's existing trim. Finished with a custom mixed paint color to match the client's decor.",
+                5: "These open kitchen shelves provide both functionality and aesthetic appeal. Crafted from reclaimed barn wood with custom forged steel brackets. The shelves are perfect for displaying beautiful dishware while keeping everyday items within easy reach. Finished with a food-safe sealant for durability."
+            };
+
+            // Open modal when gallery item is clicked
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('click', () => {
+                    const imgSrc = item.querySelector('img').src;
+                    const title = item.querySelector('h3').textContent;
+                    const desc = item.querySelector('p').textContent;
+
+                    modalImg.src = imgSrc;
+                    modalTitle.textContent = title;
+                    modalDesc.textContent = desc;
+                    modalFullDesc.textContent = fullDescriptions[index] || "Additional details about this project.";
+
+                    modal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            // Close modal when X is clicked
+            closeModal.addEventListener('click', () => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+
+            // Close modal when clicking outside the content
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Form submission
+            const form = document.getElementById('estimateForm');
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const project = document.getElementById('project').value;
+
+                // In a real application, you would send this data to a server
+                alert(`Thank you ${name}! We've received your request and will contact you at ${email} within 24 hours to discuss your project.`);
+                form.reset();
+            });
+
+            // Scroll animations
+            function checkScroll() {
+                const sections = document.querySelectorAll('.section');
+                const galleryItems = document.querySelectorAll('.gallery-item');
+
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    const triggerPoint = window.innerHeight * 0.85;
+
+                    if (sectionTop < triggerPoint) {
+                        section.classList.add('visible');
+                    }
+                });
+
+                // Animate gallery items with a delay between each
+                galleryItems.forEach((item, index) => {
+                    const itemTop = item.getBoundingClientRect().top;
+                    const triggerPoint = window.innerHeight * 0.85;
+
+                    if (itemTop < triggerPoint) {
+                        setTimeout(() => {
+                            item.classList.add('visible');
+                        }, index * 100);
+                    }
+                });
+            }
+
+            // Initial check and add scroll listener
+            checkScroll();
+            window.addEventListener('scroll', checkScroll);
+        });
+    </script>
+</body>
+</html>
