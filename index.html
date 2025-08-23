@@ -218,18 +218,18 @@
             margin-right: 0.5rem;
         }
 
-        /* Gallery Section */
-        .gallery {
+        /* Portfolio Section */
+        .portfolio {
             background-color: #f1f5f9;
         }
 
-        .gallery-grid {
+        .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1.5rem;
         }
 
-        .gallery-item {
+        .portfolio-item {
             background: white;
             border-radius: 8px;
             overflow: hidden;
@@ -240,37 +240,37 @@
             opacity: 0;
         }
 
-        .gallery-item.visible {
+        .portfolio-item.visible {
             transform: translateY(0);
             opacity: 1;
         }
 
-        .gallery-item:hover {
+        .portfolio-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .gallery-img {
+        .portfolio-img {
             height: 220px;
             width: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
 
-        .gallery-item:hover .gallery-img {
+        .portfolio-item:hover .portfolio-img {
             transform: scale(1.05);
         }
 
-        .gallery-text {
+        .portfolio-text {
             padding: 1.2rem;
         }
 
-        .gallery-text h3 {
+        .portfolio-text h3 {
             margin-bottom: 0.5rem;
             color: var(--primary);
         }
 
-        .gallery-text p {
+        .portfolio-text p {
             color: var(--gray);
             font-size: 0.9rem;
         }
@@ -579,7 +579,7 @@
             </button>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#about">About</a></li>
-                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -619,52 +619,52 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="section gallery">
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section portfolio">
         <div class="container">
             <h2 class="section-title">Our Work</h2>
-            <div class="gallery-grid">
-                <!-- Cabinet Items -->
-                <div class="gallery-item" data-category="cabinets kitchen">
-                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a4b2c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Modern kitchen cabinets" class="gallery-img">
-                    <div class="gallery-text">
+            <div class="portfolio-grid">
+                <!-- Portfolio Items -->
+                <div class="portfolio-item" data-category="cabinets kitchen">
+                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a4b2c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Modern kitchen cabinets" class="portfolio-img">
+                    <div class="portfolio-text">
                         <h3>Modern Kitchen Cabinets</h3>
                         <p>White shaker style cabinets with soft-close hinges and custom pull-out organizers.</p>
                     </div>
                 </div>
-                <div class="gallery-item" data-category="cabinets office">
-                    <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Office storage cabinets" class="gallery-img">
-                    <div class="gallery-text">
+                <div class="portfolio-item" data-category="cabinets office">
+                    <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Office storage cabinets" class="portfolio-img">
+                    <div class="portfolio-text">
                         <h3>Office Storage Solution</h3>
                         <p>Custom built-in cabinets for home office with file storage and display shelves.</p>
                     </div>
                 </div>
-                <div class="gallery-item" data-category="cabinets">
-                    <img src="https://images.unsplash.com/photo-1581539250439-c96689b516dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Bathroom vanity" class="gallery-img">
-                    <div class="gallery-text">
+                <div class="portfolio-item" data-category="cabinets">
+                    <img src="https://images.unsplash.com/photo-1581539250439-c96689b516dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Bathroom vanity" class="portfolio-img">
+                    <div class="portfolio-text">
                         <h3>Custom Bathroom Vanity</h3>
                         <p>Floating vanity with natural wood finish and marble countertop.</p>
                     </div>
                 </div>
 
                 <!-- Display Items -->
-                <div class="gallery-item" data-category="displays">
-                    <img src="https://images.unsplash.com/photo-1593085260707-5377ba37f868?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Retail display case" class="gallery-img">
-                    <div class="gallery-text">
+                <div class="portfolio-item" data-category="displays">
+                    <img src="https://images.unsplash.com/photo-1593085260707-53792bedcfea?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Retail display case" class="portfolio-img">
+                    <div class="portfolio-text">
                         <h3>Retail Display Case</h3>
                         <p>Custom glass display case with integrated lighting for retail store.</p>
                     </div>
                 </div>
-                <div class="gallery-item" data-category="displays">
-                    <img src="https://images.unsplash.com/photo-1616594039964-ae902f0c1497?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Bookcase wall unit" class="gallery-img">
-                    <div class="gallery-text">
+                <div class="portfolio-item" data-category="displays">
+                    <img src="https://images.unsplash.com/photo-1616594039964-ae902f0c1497?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Bookcase wall unit" class="portfolio-img">
+                    <div class="portfolio-text">
                         <h3>Built-in Bookcase</h3>
                         <p>Floor-to-ceiling bookcase with adjustable shelves and cabinet storage.</p>
                     </div>
                 </div>
-                <div class="gallery-item" data-category="displays kitchen">
-                    <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Kitchen display shelves" class="gallery-img">
-                    <div class="gallery-text">
+                <div class="portfolio-item" data-category="displays kitchen">
+                    <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Kitchen display shelves" class="portfolio-img">
+                    <div class="portfolio-text">
                         <h3>Kitchen Display Shelving</h3>
                         <p>Open shelving with custom brackets for displaying kitchenware.</p>
                     </div>
@@ -749,7 +749,7 @@
                     <h3 class="footer-heading">Quick Links</h3>
                     <ul>
                         <li><a href="#about">About Us</a></li>
-                        <li><a href="#gallery">Our Work</a></li>
+                        <li><a href="#portfolio">Our Work</a></li>
                         <li><a href="#testimonials">Testimonials</a></li>
                         <li><a href="#contact">Get Estimate</a></li>
                     </ul>
@@ -787,9 +787,9 @@
             });
         });
 
-        // Gallery Modal Functionality
+        // Portfolio Modal Functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const galleryItems = document.querySelectorAll('.gallery-item');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
             const modalTitle = document.getElementById('modalTitle');
@@ -807,8 +807,8 @@
                 5: "These open kitchen shelves provide both functionality and aesthetic appeal. Crafted from reclaimed barn wood with custom forged steel brackets. The shelves are perfect for displaying beautiful dishware while keeping everyday items within easy reach. Finished with a food-safe sealant for durability."
             };
 
-            // Open modal when gallery item is clicked
-            galleryItems.forEach((item, index) => {
+            // Open modal when portfolio item is clicked
+            portfolioItems.forEach((item, index) => {
                 item.addEventListener('click', () => {
                     const imgSrc = item.querySelector('img').src;
                     const title = item.querySelector('h3').textContent;
@@ -856,7 +856,7 @@
             // Scroll animations
             function checkScroll() {
                 const sections = document.querySelectorAll('.section');
-                const galleryItems = document.querySelectorAll('.gallery-item');
+                const portfolioItems = document.querySelectorAll('.portfolio-item');
 
                 sections.forEach(section => {
                     const sectionTop = section.getBoundingClientRect().top;
@@ -867,8 +867,8 @@
                     }
                 });
 
-                // Animate gallery items with a delay between each
-                galleryItems.forEach((item, index) => {
+                // Animate portfolio items with a delay between each
+                portfolioItems.forEach((item, index) => {
                     const itemTop = item.getBoundingClientRect().top;
                     const triggerPoint = window.innerHeight * 0.85;
 
