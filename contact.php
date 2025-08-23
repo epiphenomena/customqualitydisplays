@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Set the recipient email address
     $to = "clintcalhoun@gmail.com"; // Change this to your email address
-    $from = "tim@qcdisplays.com"
+    $from = "tim@qcdisplays.com";
 
     // Set the email subject
     $subject = $isSpam ? "SPAM: New Estimate Request from $name" : "New Estimate Request from $name";
