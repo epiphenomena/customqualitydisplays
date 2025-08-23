@@ -27,6 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Set the recipient email address
     $to = "clintcalhoun@gmail.com"; // Change this to your email address
+    $from = "tim@qcdisplays.com"
 
     // Set the email subject
     $subject = $isSpam ? "SPAM: New Estimate Request from $name" : "New Estimate Request from $name";
@@ -44,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email_content .= "\nProject Description:\n$project\n";
 
     // Build the email headers
-    $headers = "From: $name <$email>";
+    $headers = "From: <$from>";
 
     // Send the email
     if (mail($to, $subject, $email_content, $headers)) {
