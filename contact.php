@@ -6,6 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST["email"]);
     $phone = trim($_POST["phone"]);
     $project = trim($_POST["project"]);
+    $website = trim($_POST["website"]); // Honeypot field
     
     // Validate the data
     if (empty($name) || empty($email) || empty($project)) {
@@ -21,17 +22,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
     
+    // Check if honeypot field is filled (likely a bot)
+    $isSpam = !empty($website);
+    
     // Set the recipient email address
     $to = "info@customqualitydisplays.com"; // Change this to your email address
     
     // Set the email subject
-    $subject = "New Estimate Request from $name";
+    $subject = $isSpam ? "SPAM: New Estimate Request from $name" : "New Estimate Request from $name";
     
     // Build the email content
-    $email_content = "Name: $name\n";
+    $email_content = $isSpam ? "LIKELY SPAM - Honeypot field was filled\n\n" : "";
+    $email_content .= "Name: $name\n";
     $email_content .= "Email: $email\n";
     if (!empty($phone)) {
         $email_content .= "Phone: $phone\n";
+    }
+    if ($isSpam) {
+        $email_content .= "Honeypot Field (Website): $website\n";
     }
     $email_content .= "\nProject Description:\n$project\n";
     

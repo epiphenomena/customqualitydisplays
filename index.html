@@ -766,6 +766,11 @@
                     <label for="project" class="form-label">Project Description</label>
                     <textarea id="project" class="form-input" placeholder="Tell us about your project needs, dimensions, and any specific requirements" required></textarea>
                 </div>
+                <!-- Honeypot field for spam detection -->
+                <div class="form-group" style="display: none;">
+                    <label for="website">Website</label>
+                    <input type="text" id="website" class="form-input" placeholder="Leave this field empty">
+                </div>
                 <button type="submit" class="submit-btn" disabled>Submit Request</button>
             </form>
         </div>
@@ -919,6 +924,7 @@
                 formData.append('email', email);
                 formData.append('phone', phone);
                 formData.append('project', project);
+                formData.append('website', document.getElementById('website').value);
 
                 try {
                     const response = await fetch('contact.php', {
