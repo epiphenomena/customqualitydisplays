@@ -858,17 +858,8 @@
             // Form submission
             const form = document.getElementById('estimateForm');
 
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const project = document.getElementById('project').value;
-
-                // In a real application, you would send this data to a server
-                alert(`Thank you ${name}! We've received your request and will contact you at ${email} within 24 hours to discuss your project.`);
-                form.reset();
-            });
+            // We're using PHP for form handling now, so we don't need this JavaScript handler
+            // The form will submit to contact.php directly
 
             // Scroll animations
             function checkScroll() {
