@@ -855,26 +855,24 @@
             });
 
             // Close modal when X is clicked
-            closeModal.addEventListener('click', () => {
+            closeModal.addEventListener('click', closeModalFunction);
+
+            // Close modal when clicking outside the content
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModalFunction();
+                }
+            });
+
+            // Function to close the modal with animation
+            function closeModalFunction() {
                 modal.classList.add('closing');
                 setTimeout(() => {
                     modal.style.display = 'none';
                     modal.classList.remove('closing');
                     document.body.style.overflow = 'auto';
                 }, 300);
-            });
-
-            // Close modal when clicking outside the content
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.add('closing');
-                    setTimeout(() => {
-                        modal.style.display = 'none';
-                        modal.classList.remove('closing');
-                        document.body.style.overflow = 'auto';
-                    }, 300);
-                }
-            });
+            }
 
             // Form submission
             const form = document.getElementById('estimateForm');
