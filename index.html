@@ -567,13 +567,13 @@
             margin-bottom: 0.8rem;
         }
 
-        .footer-links a {
+        .footer-links a, .footer-contact a {
             color: #ddd;
             text-decoration: none;
             transition: var(--transition);
         }
 
-        .footer-links a:hover {
+        .footer-links a:hover, .footer-contact a:hover {
             color: var(--secondary);
             padding-left: 5px;
         }
@@ -822,11 +822,11 @@
                     <p>123 Craftsmanship Ave</p>
                     <p>Artisanville, CA 94301</p>
                     <p>Phone: (555) 123-4567</p>
-                    <p>Email: <a href="#" id="contactEmail">contact@qcdisplays.com</a></p>
+                    <p>Email: <a href="#" id="contactEmail">JavascriptRequired</a></p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 ArtisanCraft. All rights reserved.</p>
+                <p>&copy; 2025 Quality Custom Displays. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -1009,7 +1009,7 @@
             // Initial check and add scroll listener
             checkScroll();
             window.addEventListener('scroll', checkScroll);
-            
+
             // Set the decoded email address in the footer
             // Email is "contact@qcdisplays.com" encoded with btoa
             var encodedEmail = "Y29udGFjdEBxY2Rpc3BsYXlzLmNvbQ==";
