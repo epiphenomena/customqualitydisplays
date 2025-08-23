@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quality Custom Displays</title>
-    
+
     <!-- SEO Meta Tags -->
     <meta name="description" content="Custom cabinets and displays crafted to perfection. Transform your space with our quality custom-made cabinets and displays designed for your unique needs.">
     <meta name="keywords" content="custom cabinets, display cases, built-in furniture, kitchen cabinets, bathroom vanities, office storage, retail displays">
     <meta name="author" content="Quality Custom Displays">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Quality Custom Displays - Custom Cabinets & Displays">
     <meta property="og:description" content="Transform your space with our quality custom-made cabinets and displays designed for your unique needs.">
@@ -20,14 +20,14 @@
     <meta property="og:image:alt" content="Custom cabinet and display craftsmanship">
     <meta property="og:site_name" content="Quality Custom Displays">
     <meta property="og:locale" content="en_US">
-    
+
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Quality Custom Displays - Custom Cabinets & Displays">
     <meta name="twitter:description" content="Transform your space with our quality custom-made cabinets and displays designed for your unique needs.">
     <meta name="twitter:image" content="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=630&q=80">
     <meta name="twitter:image:alt" content="Custom cabinet and display craftsmanship">
-    
+
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -805,8 +805,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-about">
-                    <div class="footer-logo">Artisan<span>Craft</span></div>
-                    <p>Creating beautiful, functional custom cabinets and displays for homes and businesses since 2005.</p>
+                    <div class="footer-logo">QualityCustom<span>Displays</span></div>
+                    <p>Custom Cabinets & Displays Crafted to Perfection</p>
                 </div>
                 <div class="footer-links">
                     <h3 class="footer-heading">Quick Links</h3>
@@ -822,7 +822,7 @@
                     <p>123 Craftsmanship Ave</p>
                     <p>Artisanville, CA 94301</p>
                     <p>Phone: (555) 123-4567</p>
-                    <p>Email: info@artisancraft.com</p>
+                    <p>Email: <a href="#" id="contactEmail">contact@qcdisplays.com</a></p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -1009,6 +1009,14 @@
             // Initial check and add scroll listener
             checkScroll();
             window.addEventListener('scroll', checkScroll);
+            
+            // Set the decoded email address in the footer
+            // Email is "contact@qcdisplays.com" encoded with btoa
+            var encodedEmail = "Y29udGFjdEBxY2Rpc3BsYXlzLmNvbQ==";
+            var decodedEmail = atob(encodedEmail);
+            var emailElement = document.getElementById('contactEmail');
+            emailElement.href = 'mailto:' + decodedEmail;
+            emailElement.textContent = decodedEmail;
         });
     </script>
 </body>
