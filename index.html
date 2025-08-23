@@ -184,10 +184,16 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('cimages/hero.jpg') no-repeat center center/cover;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&h=800&q=80') no-repeat center center/cover;
             color: white;
             text-align: center;
             padding: 8rem 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .hero.loaded {
+            opacity: 1;
         }
 
         .hero-content {
@@ -1017,6 +1023,15 @@
             var emailElement = document.getElementById('contactEmail');
             emailElement.href = 'mailto:' + decodedEmail;
             emailElement.textContent = decodedEmail;
+            
+            // Add loaded class to hero section for background image transition
+            var heroSection = document.querySelector('.hero');
+            if (heroSection) {
+                // Small delay to ensure the transition is visible
+                setTimeout(function() {
+                    heroSection.classList.add('loaded');
+                }, 100);
+            }
         });
     </script>
 </body>
