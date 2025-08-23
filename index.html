@@ -466,7 +466,28 @@
             background: #23867b;
         }
 
-        /* Footer */
+        .submit-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .thank-you-message {
+            text-align: center;
+            padding: 2rem;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            color: #155724;
+        }
+
+        .thank-you-message h3 {
+            margin-bottom: 1rem;
+            color: #155724;
+        }
+
+        .thank-you-message p {
+            margin-bottom: 1rem;
+        }
         footer {
             background: var(--dark);
             color: white;
@@ -728,7 +749,7 @@
     <section id="contact" class="section contact">
         <div class="container">
             <h2 class="section-title">Request an Estimate</h2>
-            <form id="estimateForm" class="contact-form" method="POST" action="contact.php">
+            <form id="estimateForm" class="contact-form">
                 <div class="form-group">
                     <label for="name" class="form-label">Name</label>
                     <input type="text" id="name" class="form-input" placeholder="Your full name" required>
@@ -738,10 +759,14 @@
                     <input type="email" id="email" class="form-input" placeholder="Your email address" required>
                 </div>
                 <div class="form-group">
+                    <label for="phone" class="form-label">Phone Number (Optional)</label>
+                    <input type="tel" id="phone" class="form-input" placeholder="Your phone number">
+                </div>
+                <div class="form-group">
                     <label for="project" class="form-label">Project Description</label>
                     <textarea id="project" class="form-input" placeholder="Tell us about your project needs, dimensions, and any specific requirements" required></textarea>
                 </div>
-                <button type="submit" class="submit-btn">Submit Request</button>
+                <button type="submit" class="submit-btn" disabled>Submit Request</button>
             </form>
         </div>
     </section>
@@ -857,9 +882,66 @@
 
             // Form submission
             const form = document.getElementById('estimateForm');
+            const submitBtn = form.querySelector('.submit-btn');
 
-            // We're using PHP for form handling now, so we don't need this JavaScript handler
-            // The form will submit to contact.php directly
+            // Function to check if all required fields are filled
+            function checkFormValidity() {
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const project = document.getElementById('project').value.trim();
+                
+                // Simple email validation (check for @ and .)
+                const emailValid = email.includes('@') && email.includes('.');
+                
+                if (name && email && project && emailValid) {
+                    submitBtn.disabled = false;
+                } else {
+                    submitBtn.disabled = true;
+                }
+            }
+
+            // Add event listeners to all form inputs
+            form.querySelectorAll('input, textarea').forEach(element => {
+                element.addEventListener('input', checkFormValidity);
+            });
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const project = document.getElementById('project').value.trim();
+
+                // Create form data
+                const formData = new FormData();
+                formData.append('name', name);
+                formData.append('email', email);
+                formData.append('phone', phone);
+                formData.append('project', project);
+
+                try {
+                    const response = await fetch('contact.php', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (response.ok) {
+                        // Replace form with thank you message
+                        form.innerHTML = `
+                            <div class="thank-you-message">
+                                <h3>Thank You!</h3>
+                                <p>We've received your request and will contact you within 24 hours to discuss your project.</p>
+                                <p>If you have any urgent questions, please call us at (555) 123-4567.</p>
+                            </div>
+                        `;
+                    } else {
+                        alert('Oops! Something went wrong and we couldn\'t send your request. Please try again.');
+                    }
+                } catch (error) {
+                    alert('Oops! Something went wrong and we couldn\'t send your request. Please try again.');
+                }
+            });
 
             // Scroll animations
             function checkScroll() {
