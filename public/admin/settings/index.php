@@ -9,15 +9,28 @@ $settings_file = __DIR__ . '/../../data/settings.json';
 
 // Load settings from JSON file
 $settings_data = json_decode(file_get_contents($settings_file), true);
-$settings = $settings_data;
+
+// Initialize settings with defaults if file doesn't exist or is empty
+if ($settings_data === null || empty($settings_data)) {
+    $settings = [
+        'site-title' => 'Quality Custom Displays',
+        'site-description' => 'Custom cabinets and displays crafted to perfection. Transform your space with our quality custom-made cabinets and displays designed for your unique needs.',
+        'contact-email' => 'info@qualitycustomdisplays.com',
+        'phone-number' => '(555) 123-4567',
+        'street-address' => '123 Craftsmanship Ave, Artisanville, CA 94301',
+        'social-media-card' => ''
+    ];
+} else {
+    $settings = $settings_data;
+}
 
 // Process form submission if POST data is present
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $settings['site-title'] = $_POST['site-title'];
-    $settings['site-description'] = $_POST['site-description'];
-    $settings['contact-email'] = $_POST['contact-email'];
-    $settings['phone-number'] = $_POST['phone-number'];
-    $settings['street-address'] = $_POST['street-address'];
+    $settings['site-title'] = $_POST['site-title'] ?? '';
+    $settings['site-description'] = $_POST['site-description'] ?? '';
+    $settings['contact-email'] = $_POST['contact-email'] ?? '';
+    $settings['phone-number'] = $_POST['phone-number'] ?? '';
+    $settings['street-address'] = $_POST['street-address'] ?? '';
 
     // Handle social media card image upload
     $new_image_path = handle_image_upload('social-media-card', 'social-card-image', 'social media card');

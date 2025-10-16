@@ -3,13 +3,13 @@
 $settings_file = __DIR__ . '/data/settings.json';
 $settings_data = json_decode(file_get_contents($settings_file), true);
 
-// Set default values if settings are not available
-$site_title = !empty($settings_data['site-title']) ? $settings_data['site-title'] : 'Quality Custom Displays';
-$site_description = !empty($settings_data['site-description']) ? $settings_data['site-description'] : 'Custom cabinets and displays crafted to perfection. Transform your space with our quality custom-made cabinets and displays designed for your unique needs.';
-$contact_email = !empty($settings_data['contact-email']) ? $settings_data['contact-email'] : 'info@qualitycustomdisplays.com';
-$phone_number = !empty($settings_data['phone-number']) ? $settings_data['phone-number'] : '(555) 123-4567';
-$street_address = !empty($settings_data['street-address']) ? $settings_data['street-address'] : '123 Craftsmanship Ave, Artisanville, CA 94301';
-$social_media_card = !empty($settings_data['social-media-card']) ? $settings_data['social-media-card'] : '';
+// Extract settings values (these should exist in the JSON file)
+$site_title = $settings_data['site-title'];
+$site_description = $settings_data['site-description'];
+$contact_email = $settings_data['contact-email'];
+$phone_number = $settings_data['phone-number'];
+$street_address = $settings_data['street-address'];
+$social_media_card = $settings_data['social-media-card'];
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ $social_media_card = !empty($settings_data['social-media-card']) ? $settings_dat
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="<?php echo htmlspecialchars($site_title . ' - Custom Cabinets & Displays'); ?>">
+    <meta property="og:title" content="<?php echo htmlspecialchars($site_title); ?>">
     <meta property="og:description" content="<?php echo htmlspecialchars($site_description); ?>">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.qualitycustomdisplays.com">
@@ -34,8 +34,7 @@ $social_media_card = !empty($settings_data['social-media-card']) ? $settings_dat
     <meta property="og:image" content="<?php echo htmlspecialchars($social_media_card); ?>">
     <meta property="og:image:alt" content="Custom cabinet and display craftsmanship">
     <?php else: ?>
-    <meta property="og:image" content="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=630&q=80">
-    <meta property="og:image:alt" content="Custom cabinet and display craftsmanship">
+    <meta property="og:image" content="<?php echo htmlspecialchars($social_media_card); ?>">
     <?php endif; ?>
     <meta property="og:site_name" content="<?php echo htmlspecialchars($site_title); ?>">
     <meta property="og:locale" content="en_US">
@@ -44,11 +43,7 @@ $social_media_card = !empty($settings_data['social-media-card']) ? $settings_dat
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?php echo htmlspecialchars($site_title . ' - Custom Cabinets & Displays'); ?>">
     <meta name="twitter:description" content="<?php echo htmlspecialchars($site_description); ?>">
-    <?php if (!empty($social_media_card)): ?>
     <meta name="twitter:image" content="<?php echo htmlspecialchars($social_media_card); ?>">
-    <?php else: ?>
-    <meta name="twitter:image" content="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=630&q=80">
-    <?php endif; ?>
     <meta name="twitter:image:alt" content="Custom cabinet and display craftsmanship">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
