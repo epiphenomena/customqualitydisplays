@@ -1,0 +1,14 @@
+Options -Indexes
+
+# Protect the /data directory from direct access
+<LocationMatch "^/data(/.*)?$">
+    Require all denied
+</LocationMatch>
+
+# Protect admin section with BasicAuth
+<LocationMatch "^/admin(/.*)?$">
+    AuthType Basic
+    AuthName "Restricted Area"
+    AuthUserFile .htpasswd
+    Require valid-user
+</LocationMatch>
