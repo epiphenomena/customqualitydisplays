@@ -193,4 +193,14 @@ document.addEventListener('DOMContentLoaded', function() {
             heroSection.classList.add('loaded');
         }, 100);
     }
+
+    // Add btn class to the last link in the hero section
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) {
+        const links = heroContent.querySelectorAll('a');
+        if (links.length > 0) {
+            const lastLink = links[links.length - 1];
+            lastLink.classList.add('btn');
+        }
+    }
 });

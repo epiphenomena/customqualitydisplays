@@ -1,13 +1,21 @@
 <?php
 include 'header.php';
+
+// Include Parsedown for markdown processing
+require_once 'Parsedown.php';
+$parsedown = new Parsedown();
+
+// Read the hero markdown file and convert to HTML
+$hero_content = file_get_contents('data/hero.md');
+
+// Process markdown content
+$processed_content = $parsedown->text($hero_content);
 ?>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="container hero-content">
-            <h1>Custom Cabinets & Displays Crafted to Perfection</h1>
-            <p>Transform your tradeshow space with beautifully crafted, custom-made cabinets and displays designed for your unique needs.</p>
-            <a href="#contact" class="btn">Request a Consultation</a>
+            <?php echo $processed_content; ?>
         </div>
     </section>
 
