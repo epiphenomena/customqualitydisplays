@@ -1,0 +1,14 @@
+{
+    "title": "About Us",
+    "subtitle": "Precision Craftsmanship Meets Innovative Design",
+    "description": "At Quality Custom Displays, we create custom cabinets and displays that perfectly blend functionality with aesthetic appeal. With over 15 years of experience, our master craftsmen pay attention to every detail to deliver exceptional quality.",
+    "description2": "We work with a variety of materials including hardwoods, glass, and metal to create pieces that reflect your style while serving your practical needs.",
+    "features": [
+        "Custom designed to your specifications",
+        "Premium quality materials",
+        "Expert craftsmanship",
+        "On-time completion",
+        "Installation included"
+    ],
+    "image_url": "https://images.unsplash.com/photo-1601760561441-16420502c7e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80"
+}

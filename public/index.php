@@ -20,24 +20,26 @@ $processed_content = $parsedown->text($hero_content);
     </section>
 
     <!-- About Section -->
+    <?php
+    // Load about data from JSON file
+    $about_data = json_decode(file_get_contents('data/about.json'), true);
+    ?>
     <section id="about" class="section">
         <div class="container">
-            <h2 class="section-title">About Us</h2>
+            <h2 class="section-title"><?php echo htmlspecialchars($about_data['title']); ?></h2>
             <div class="about-content">
                 <div class="about-text">
-                    <h2>Precision Craftsmanship Meets Innovative Design</h2>
-                    <p>At Quality Custom Displays, we create custom cabinets and displays that perfectly blend functionality with aesthetic appeal. With over 15 years of experience, our master craftsmen pay attention to every detail to deliver exceptional quality.</p>
-                    <p>We work with a variety of materials including hardwoods, glass, and metal to create pieces that reflect your style while serving your practical needs.</p>
+                    <h2><?php echo htmlspecialchars($about_data['subtitle']); ?></h2>
+                    <p><?php echo htmlspecialchars($about_data['description']); ?></p>
+                    <p><?php echo htmlspecialchars($about_data['description2']); ?></p>
                     <ul class="about-features">
-                        <li>Custom designed to your specifications</li>
-                        <li>Premium quality materials</li>
-                        <li>Expert craftsmanship</li>
-                        <li>On-time completion</li>
-                        <li>Installation included</li>
+                        <?php foreach ($about_data['features'] as $feature): ?>
+                        <li><?php echo htmlspecialchars($feature); ?></li>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
                 <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1601760561441-16420502c7e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Craftsman working on custom cabinet">
+                    <img src="<?php echo htmlspecialchars($about_data['image_url']); ?>" alt="Craftsman working on custom cabinet">
                 </div>
             </div>
         </div>
