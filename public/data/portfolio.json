@@ -1,0 +1,41 @@
+{
+    "title": "Our Work",
+    "items": [
+        {
+            "title": "Modern Kitchen Cabinets",
+            "description": "White shaker style cabinets with soft-close hinges and custom pull-out organizers.",
+            "full_description": "These modern kitchen cabinets feature a classic shaker style design with a crisp white finish. We incorporated soft-close hinges and drawers for quiet operation. The custom pull-out organizers include spice racks, utensil dividers, and a dedicated storage space for cutting boards and baking sheets. Crafted from premium maple wood with a durable lacquer finish.",
+            "image_url": "https://1.bp.blogspot.com/_sl24j8YCPIM/TNgDiIRiW3I/AAAAAAAAAbU/5rIco_H-dn4/s1600/Trade_show_display_Alumalite.jpg"
+        },
+        {
+            "title": "Office Storage Solution",
+            "description": "Custom built-in cabinets for home office with file storage and display shelves.",
+            "full_description": "This home office storage solution features built-in cabinets that maximize vertical space. The design includes file storage drawers, adjustable shelving for books and decor, and closed cabinets for hiding office supplies. Finished with a rich walnut stain and matte protective coating.",
+            "image_url": "https://images.unsplash.com/photo-1595428774223-ef52624120d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80"
+        },
+        {
+            "title": "Custom Bathroom Vanity",
+            "description": "Floating vanity with natural wood finish and marble countertop.",
+            "full_description": "This floating bathroom vanity provides a modern, spacious feel to the bathroom. Crafted from solid oak with a natural oil finish that highlights the wood grain. Features include a marble countertop with an integrated sink, two soft-close drawers, and open shelving for towel storage.",
+            "image_url": "https://images.unsplash.com/photo-1581539250439-c96689b516dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80"
+        },
+        {
+            "title": "Retail Display Case",
+            "description": "Custom glass display case with integrated lighting for retail store.",
+            "full_description": "This retail display case was designed for a jewelry store, featuring tempered glass on all sides for maximum visibility. The integrated LED lighting provides perfect illumination for the products. The case includes locking doors and adjustable glass shelves to accommodate various product sizes.",
+            "image_url": "https://www.tradeshowdisplaysandexhibits.com/wp-content/uploads/2019/07/Buddy-phones.jpg"
+        },
+        {
+            "title": "Built-in Bookcase",
+            "description": "Floor-to-ceiling bookcase with adjustable shelves and cabinet storage.",
+            "full_description": "This built-in bookcase transforms an entire wall into a functional storage and display area. Features include adjustable shelves to accommodate books of different sizes, cabinet bases with hidden storage, and crown molding that matches the room's existing trim. Finished with a custom mixed paint color to match the client's decor.",
+            "image_url": "https://i.pinimg.com/originals/2c/f0/0a/2cf00acd102e161fa7180d8fe6a91252.png"
+        },
+        {
+            "title": "Kitchen Display Shelving",
+            "description": "Open shelving with custom brackets for displaying kitchenware.",
+            "full_description": "These open kitchen shelves provide both functionality and aesthetic appeal. Crafted from reclaimed barn wood with custom forged steel brackets. The shelves are perfect for displaying beautiful dishware while keeping everyday items within easy reach. Finished with a food-safe sealant for durability.",
+            "image_url": "https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80"
+        }
+    ]
+}

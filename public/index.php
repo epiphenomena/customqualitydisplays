@@ -44,55 +44,24 @@ $processed_content = $parsedown->text($hero_content);
     </section>
 
     <!-- Portfolio Section -->
+    <?php
+    // Load portfolio data from JSON file
+    $portfolio_data = json_decode(file_get_contents('data/portfolio.json'), true);
+    ?>
     <section id="portfolio" class="section portfolio">
         <div class="container">
-            <h2 class="section-title">Our Work</h2>
+            <h2 class="section-title"><?php echo htmlspecialchars($portfolio_data['title']); ?></h2>
             <div class="portfolio-grid">
                 <!-- Portfolio Items -->
-                <div class="portfolio-item" data-category="cabinets kitchen" data-full-desc="These modern kitchen cabinets feature a classic shaker style design with a crisp white finish. We incorporated soft-close hinges and drawers for quiet operation. The custom pull-out organizers include spice racks, utensil dividers, and a dedicated storage space for cutting boards and baking sheets. Crafted from premium maple wood with a durable lacquer finish.">
-                    <img src="https://1.bp.blogspot.com/_sl24j8YCPIM/TNgDiIRiW3I/AAAAAAAAAbU/5rIco_H-dn4/s1600/Trade_show_display_Alumalite.jpg" alt="Modern kitchen cabinets" class="portfolio-img">
+                <?php foreach ($portfolio_data['items'] as $item): ?>
+                <div class="portfolio-item" data-full-desc="<?php echo htmlspecialchars($item['full_description']); ?>">
+                    <img src="<?php echo htmlspecialchars($item['image_url']); ?>" alt="<?php echo htmlspecialchars($item['title']); ?>" class="portfolio-img">
                     <div class="portfolio-text">
-                        <h3>Modern Kitchen Cabinets</h3>
-                        <p>White shaker style cabinets with soft-close hinges and custom pull-out organizers.</p>
+                        <h3><?php echo htmlspecialchars($item['title']); ?></h3>
+                        <p><?php echo htmlspecialchars($item['description']); ?></p>
                     </div>
                 </div>
-                <div class="portfolio-item" data-category="cabinets office" data-full-desc="This home office storage solution features built-in cabinets that maximize vertical space. The design includes file storage drawers, adjustable shelving for books and decor, and closed cabinets for hiding office supplies. Finished with a rich walnut stain and matte protective coating.">
-                    <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Office storage cabinets" class="portfolio-img">
-                    <div class="portfolio-text">
-                        <h3>Office Storage Solution</h3>
-                        <p>Custom built-in cabinets for home office with file storage and display shelves.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="cabinets" data-full-desc="This floating bathroom vanity provides a modern, spacious feel to the bathroom. Crafted from solid oak with a natural oil finish that highlights the wood grain. Features include a marble countertop with an integrated sink, two soft-close drawers, and open shelving for towel storage.">
-                    <img src="https://images.unsplash.com/photo-1581539250439-c96689b516dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Bathroom vanity" class="portfolio-img">
-                    <div class="portfolio-text">
-                        <h3>Custom Bathroom Vanity</h3>
-                        <p>Floating vanity with natural wood finish and marble countertop.</p>
-                    </div>
-                </div>
-
-                <!-- Display Items -->
-                <div class="portfolio-item" data-category="displays" data-full-desc="This retail display case was designed for a jewelry store, featuring tempered glass on all sides for maximum visibility. The integrated LED lighting provides perfect illumination for the products. The case includes locking doors and adjustable glass shelves to accommodate various product sizes.">
-                    <img src="https://www.tradeshowdisplaysandexhibits.com/wp-content/uploads/2019/07/Buddy-phones.jpg" alt="Retail display case" class="portfolio-img">
-                    <div class="portfolio-text">
-                        <h3>Retail Display Case</h3>
-                        <p>Custom glass display case with integrated lighting for retail store.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="displays" data-full-desc="This built-in bookcase transforms an entire wall into a functional storage and display area. Features include adjustable shelves to accommodate books of different sizes, cabinet bases with hidden storage, and crown molding that matches the room's existing trim. Finished with a custom mixed paint color to match the client's decor.">
-                    <img src="https://i.pinimg.com/originals/2c/f0/0a/2cf00acd102e161fa7180d8fe6a91252.png" alt="Bookcase wall unit" class="portfolio-img">
-                    <div class="portfolio-text">
-                        <h3>Built-in Bookcase</h3>
-                        <p>Floor-to-ceiling bookcase with adjustable shelves and cabinet storage.</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="displays kitchen" data-full-desc="These open kitchen shelves provide both functionality and aesthetic appeal. Crafted from reclaimed barn wood with custom forged steel brackets. The shelves are perfect for displaying beautiful dishware while keeping everyday items within easy reach. Finished with a food-safe sealant for durability.">
-                    <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=400&q=80" alt="Kitchen display shelves" class="portfolio-img">
-                    <div class="portfolio-text">
-                        <h3>Kitchen Display Shelving</h3>
-                        <p>Open shelving with custom brackets for displaying kitchenware.</p>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
