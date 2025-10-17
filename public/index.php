@@ -82,30 +82,26 @@ $processed_content = $parsedown->text($hero_content);
     </div>
 
     <!-- Testimonials Section -->
+    <?php
+    // Load testimonials data from JSON file
+    $testimonials_data = json_decode(file_get_contents('data/testimonials.json'), true);
+    ?>
     <section id="testimonials" class="section testimonials">
         <div class="container">
-            <h2 class="section-title">What Our Clients Say</h2>
+            <h2 class="section-title"><?php echo htmlspecialchars($testimonials_data['title']); ?></h2>
             <div class="testimonial-grid">
+                <?php foreach ($testimonials_data['items'] as $item): ?>
                 <div class="testimonial">
-                    <p class="testimonial-text">"The custom cabinets ArtisanCraft created for our kitchen completely transformed the space. The quality is exceptional and the attention to detail is remarkable."</p>
+                    <p class="testimonial-text">"<?php echo htmlspecialchars($item['text']); ?>"</p>
                     <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sarah Johnson" class="author-img">
+                        <img src="<?php echo htmlspecialchars($item['author_image_url']); ?>" alt="<?php echo htmlspecialchars($item['author_name']); ?>" class="author-img">
                         <div class="author-info">
-                            <h4>Sarah Johnson</h4>
-                            <p>Homeowner</p>
+                            <h4><?php echo htmlspecialchars($item['author_name']); ?></h4>
+                            <p><?php echo htmlspecialchars($item['author_role']); ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial">
-                    <p class="testimonial-text">"We needed custom displays for our retail store and ArtisanCraft delivered beyond our expectations. The displays are both functional and beautiful."</p>
-                    <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen" class="author-img">
-                        <div class="author-info">
-                            <h4>Michael Chen</h4>
-                            <p>Boutique Owner</p>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
