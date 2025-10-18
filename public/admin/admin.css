@@ -73,6 +73,61 @@ form {
     border: 1px solid var(--border-color);
 }
 
+/* --- Admin Content Layout --- */
+.admin-content-wrapper {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.admin-content-wrapper > div {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* --- Portfolio & Testimonials Admin Styles --- */
+.portfolio-admin-list,
+.testimonials-admin-list {
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.portfolio-items-container,
+.testimonials-items-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.portfolio-item-admin,
+.testimonial-item-admin {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.portfolio-item-info,
+.testimonial-item-info {
+    flex: 1;
+}
+
+.portfolio-item-actions,
+.testimonial-item-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.portfolio-item-actions form,
+.testimonial-item-actions form {
+    margin: 0;
+}
+
 /* --- Form Elements Styling --- */
 .form-group {
     margin-bottom: 1.5rem;

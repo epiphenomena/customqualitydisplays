@@ -59,6 +59,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Remove the testimonial item
                 array_splice($testimonials['items'], $item_id, 1);
             }
+        } elseif ($_POST['action'] === 'move_up' || $_POST['action'] === 'move_down') {
+            $item_id = $_POST['item_id'];
+            if (isset($testimonials['items'][$item_id])) {
+                $items = &$testimonials['items'];
+                $count = count($items);
+                
+                if ($_POST['action'] === 'move_up' && $item_id > 0) {
+                    // Swap with the previous item
+                    $temp = $items[$item_id - 1];
+                    $items[$item_id - 1] = $items[$item_id];
+                    $items[$item_id] = $temp;
+                } elseif ($_POST['action'] === 'move_down' && $item_id < $count - 1) {
+                    // Swap with the next item
+                    $temp = $items[$item_id + 1];
+                    $items[$item_id + 1] = $items[$item_id];
+                    $items[$item_id] = $temp;
+                }
+            }
         }
     }
 
@@ -84,69 +102,85 @@ include '../header.php';
         <h1>Testimonials Management</h1>
         <p>Manage testimonials that appear in the testimonials section.</p>
 
-        <!-- Testimonials Items List -->
-        <div class="testimonials-admin-list">
-            <h2>Current Testimonials</h2>
-            <?php if (!empty($testimonials['items'])): ?>
-                <div class="testimonials-items-container">
-                    <?php foreach ($testimonials['items'] as $index => $item): ?>
-                        <div class="testimonial-item-admin">
-                            <div class="testimonial-item-info">
-                                <p>"<?php echo htmlspecialchars(substr($item['text'], 0, 100)); ?><?php echo strlen($item['text']) > 100 ? '...' : ''; ?>"</p>
-                                <p><strong><?php echo htmlspecialchars($item['author_name']); ?></strong> - <?php echo htmlspecialchars($item['author_role']); ?></p>
+        <div class="admin-content-wrapper">
+            <!-- Testimonials Items List -->
+            <div class="testimonials-admin-list">
+                <h2>Current Testimonials</h2>
+                <?php if (!empty($testimonials['items'])): ?>
+                    <div class="testimonials-items-container">
+                        <?php foreach ($testimonials['items'] as $index => $item): ?>
+                            <div class="testimonial-item-admin">
+                                <div class="testimonial-item-info">
+                                    <p>"<?php echo htmlspecialchars(substr($item['text'], 0, 100)); ?><?php echo strlen($item['text']) > 100 ? '...' : ''; ?>"</p>
+                                    <p><strong><?php echo htmlspecialchars($item['author_name']); ?></strong> - <?php echo htmlspecialchars($item['author_role']); ?></p>
+                                </div>
+                                <div class="testimonial-item-actions">
+                                    <?php if ($index > 0): ?>
+                                        <form method="post" style="display:inline;">
+                                            <input type="hidden" name="action" value="move_up">
+                                            <input type="hidden" name="item_id" value="<?php echo $index; ?>">
+                                            <button type="submit" class="btn btn-secondary btn-sm">↑ Move Up</button>
+                                        </form>
+                                    <?php endif; ?>
+                                    <?php if ($index < count($testimonials['items']) - 1): ?>
+                                        <form method="post" style="display:inline;">
+                                            <input type="hidden" name="action" value="move_down">
+                                            <input type="hidden" name="item_id" value="<?php echo $index; ?>">
+                                            <button type="submit" class="btn btn-secondary btn-sm">↓ Move Down</button>
+                                        </form>
+                                    <?php endif; ?>
+                                    <button type="button" class="btn btn-primary btn-sm edit-btn" data-index="<?php echo $index; ?>">Edit</button>
+                                    <form method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this testimonial?');">
+                                        <input type="hidden" name="action" value="delete">
+                                        <input type="hidden" name="item_id" value="<?php echo $index; ?>">
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="testimonial-item-actions">
-                                <button type="button" class="btn btn-primary edit-btn" data-index="<?php echo $index; ?>">Edit</button>
-                                <form method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this testimonial?');">
-                                    <input type="hidden" name="action" value="delete">
-                                    <input type="hidden" name="item_id" value="<?php echo $index; ?>">
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            <?php else: ?>
-                <p>No testimonials yet.</p>
-            <?php endif; ?>
-        </div>
-
-        <!-- Add/Edit Form -->
-        <div class="testimonial-form-container">
-            <h2 id="form-title">Add New Testimonial</h2>
-            <form method="post" enctype="multipart/form-data" id="testimonial-form">
-                <input type="hidden" name="action" value="add" id="form-action">
-                <input type="hidden" name="item_id" value="" id="item-id">
-                <input type="hidden" name="old_image" value="" id="old-image">
-                
-                <div class="form-group">
-                    <label for="text">Testimonial Text</label>
-                    <textarea id="text" name="text" placeholder="Enter the testimonial text" rows="5" required></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="author_name">Author Name</label>
-                    <input type="text" id="author_name" name="author_name" placeholder="Author name" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="author_role">Author Role</label>
-                    <input type="text" id="author_role" name="author_role" placeholder="Author role (e.g., Homeowner, Boutique Owner)">
-                </div>
-
-                <div class="form-group">
-                    <label for="author_image">Author Image</label>
-                    <input type="file" id="author_image" name="author_image" accept="image/*">
-                    <small class="form-help">Upload an image for the testimonial author. Recommended square dimensions.</small>
-                    <div id="current-image-container" style="display:none;">
-                        <p>Current image:</p>
-                        <img id="current-image" src="" alt="Current testimonial author image" style="max-width: 100px; max-height: 100px; border-radius: 50%;">
+                        <?php endforeach; ?>
                     </div>
-                </div>
+                <?php else: ?>
+                    <p>No testimonials yet.</p>
+                <?php endif; ?>
+            </div>
 
-                <button type="submit" class="btn btn-primary">Save Testimonial</button>
-                <button type="button" class="btn btn-secondary" id="cancel-edit" style="display:none;">Cancel</button>
-            </form>
+            <!-- Add/Edit Form -->
+            <div class="testimonial-form-container">
+                <h2 id="form-title">Add New Testimonial</h2>
+                <form method="post" enctype="multipart/form-data" id="testimonial-form">
+                    <input type="hidden" name="action" value="add" id="form-action">
+                    <input type="hidden" name="item_id" value="" id="item-id">
+                    <input type="hidden" name="old_image" value="" id="old-image">
+                    
+                    <div class="form-group">
+                        <label for="text">Testimonial Text</label>
+                        <textarea id="text" name="text" placeholder="Enter the testimonial text" rows="5" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="author_name">Author Name</label>
+                        <input type="text" id="author_name" name="author_name" placeholder="Author name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="author_role">Author Role</label>
+                        <input type="text" id="author_role" name="author_role" placeholder="Author role (e.g., Homeowner, Boutique Owner)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="author_image">Author Image</label>
+                        <input type="file" id="author_image" name="author_image" accept="image/*">
+                        <small class="form-help">Upload an image for the testimonial author. Recommended square dimensions.</small>
+                        <div id="current-image-container" style="display:none;">
+                            <p>Current image:</p>
+                            <img id="current-image" src="" alt="Current testimonial author image" style="max-width: 100px; max-height: 100px; border-radius: 50%;">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Save Testimonial</button>
+                    <button type="button" class="btn btn-secondary" id="cancel-edit" style="display:none;">Cancel</button>
+                </form>
+            </div>
         </div>
     </div>
 </main>
