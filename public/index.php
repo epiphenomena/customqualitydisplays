@@ -23,6 +23,13 @@ $processed_content = $parsedown->text($hero_content);
     <?php
     // Load about data from JSON file
     $about_data = json_decode(file_get_contents('data/about.json'), true);
+    
+    // Include Parsedown for markdown processing
+    require_once 'Parsedown.php';
+    $parsedown = new Parsedown();
+    
+    // Process markdown content
+    $processed_content = $parsedown->text($about_data['content']);
     ?>
     <section id="about" class="section">
         <div class="container">
@@ -30,13 +37,7 @@ $processed_content = $parsedown->text($hero_content);
             <div class="about-content">
                 <div class="about-text">
                     <h2><?php echo htmlspecialchars($about_data['subtitle']); ?></h2>
-                    <p><?php echo htmlspecialchars($about_data['description']); ?></p>
-                    <p><?php echo htmlspecialchars($about_data['description2']); ?></p>
-                    <ul class="about-features">
-                        <?php foreach ($about_data['features'] as $feature): ?>
-                        <li><?php echo htmlspecialchars($feature); ?></li>
-                        <?php endforeach; ?>
-                    </ul>
+                    <?php echo $processed_content; ?>
                 </div>
                 <div class="about-img">
                     <img src="<?php echo htmlspecialchars($about_data['image_url']); ?>" alt="Craftsman working on custom cabinet">

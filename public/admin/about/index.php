@@ -15,12 +15,7 @@ $about = $about_data;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $about['title'] = $_POST['title'];
     $about['subtitle'] = $_POST['subtitle'];
-    $about['description'] = $_POST['description'];
-    $about['description2'] = $_POST['description2'];
-    
-    // Process features from textarea (one per line)
-    $features = array_filter(array_map('trim', explode("\n", $_POST['features'])));
-    $about['features'] = $features;
+    $about['content'] = $_POST['content'];
 
     // Handle about section image upload
     $new_image_path = handle_image_upload('image', 'about-section', 'about section');
@@ -72,19 +67,21 @@ include '../header.php';
             </div>
 
             <div class="form-group">
-                <label for="description">First Description Paragraph</label>
-                <textarea id="description" name="description" placeholder="About section first paragraph..." rows="4"><?php echo htmlspecialchars($about['description']); ?></textarea>
-            </div>
+                <label for="content">Content (Markdown)</label>
+                <textarea id="content" name="content" placeholder="About section content in markdown..." rows="10"><?php echo htmlspecialchars($about['content']); ?></textarea>
+                <small class="form-help">Use markdown formatting for paragraphs and lists</small>
+                
+                <div class="markdown-example">
+                    <h3>Markdown Formatting Help</h3>
+                    <pre><code>
+# Headers
+This is a paragraph.
 
-            <div class="form-group">
-                <label for="description2">Second Description Paragraph</label>
-                <textarea id="description2" name="description2" placeholder="About section second paragraph..." rows="4"><?php echo htmlspecialchars($about['description2']); ?></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="features">Features (one per line)</label>
-                <textarea id="features" name="features" placeholder="Feature 1&#10;Feature 2&#10;Feature 3" rows="5"><?php echo htmlspecialchars(implode("\n", $about['features'])); ?></textarea>
-                <small class="form-help">Enter each feature on a new line</small>
+- List item 1
+- List item 2
+- List item 3
+                    </code></pre>
+                </div>
             </div>
 
             <div class="form-group">
