@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $new_image_path = handle_image_upload('image', 'portfolio-item', 'portfolio item');
             if ($new_image_path) {
                 $new_item['image_url'] = $new_image_path;
-                
+
                 // If editing and there was an old image, remove it
                 if ($item_id !== null && isset($_POST['old_image']) && !empty($_POST['old_image']) && $_POST['old_image'] !== $new_image_path) {
                     remove_image_file($_POST['old_image']);
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $new_item['image_url'] = $_POST['old_image'];
                 }
             }
-            
+
             if ($_POST['action'] === 'add') {
                 // Add new item to the end of the array
                 $portfolio['items'][] = $new_item;
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($portfolio['items'][$item_id])) {
                 $items = &$portfolio['items'];
                 $count = count($items);
-                
+
                 if ($_POST['action'] === 'move_up' && $item_id > 0) {
                     // Swap with the previous item
                     $temp = $items[$item_id - 1];
@@ -112,21 +112,21 @@ include '../header.php';
                                 </div>
                                 <div class="portfolio-item-actions">
                                     <?php if ($index > 0): ?>
-                                        <form method="post" style="display:inline;">
+                                        <form method="post" style="display:inline; padding: 0;">
                                             <input type="hidden" name="action" value="move_up">
                                             <input type="hidden" name="item_id" value="<?php echo $index; ?>">
                                             <button type="submit" class="btn btn-secondary btn-sm">↑ Move Up</button>
                                         </form>
                                     <?php endif; ?>
                                     <?php if ($index < count($portfolio['items']) - 1): ?>
-                                        <form method="post" style="display:inline;">
+                                        <form method="post" style="display:inline; padding: 0;">
                                             <input type="hidden" name="action" value="move_down">
                                             <input type="hidden" name="item_id" value="<?php echo $index; ?>">
                                             <button type="submit" class="btn btn-secondary btn-sm">↓ Move Down</button>
                                         </form>
                                     <?php endif; ?>
                                     <button type="button" class="btn btn-primary btn-sm edit-btn" data-index="<?php echo $index; ?>">Edit</button>
-                                    <form method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this portfolio item?');">
+                                    <form method="post" style="display:inline; padding: 0;" onsubmit="return confirm('Are you sure you want to delete this portfolio item?');">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="item_id" value="<?php echo $index; ?>">
                                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
@@ -147,7 +147,7 @@ include '../header.php';
                     <input type="hidden" name="action" value="add" id="form-action">
                     <input type="hidden" name="item_id" value="" id="item-id">
                     <input type="hidden" name="old_image" value="" id="old-image">
-                    
+
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input type="text" id="title" name="title" placeholder="Project title" required>
@@ -188,14 +188,14 @@ include '../header.php';
             const index = this.getAttribute('data-index');
             const portfolioItems = <?php echo json_encode($portfolio['items']); ?>;
             const item = portfolioItems[index];
-            
+
             document.getElementById('form-title').textContent = 'Edit Portfolio Item';
             document.getElementById('form-action').value = 'edit';
             document.getElementById('item-id').value = index;
             document.getElementById('title').value = item.title || '';
             document.getElementById('description').value = item.description || '';
             document.getElementById('full_description').value = item.full_description || '';
-            
+
             // Handle current image display
             if (item.image_url) {
                 document.getElementById('current-image').src = item.image_url;
@@ -205,11 +205,11 @@ include '../header.php';
                 document.getElementById('current-image-container').style.display = 'none';
                 document.getElementById('old-image').value = '';
             }
-            
+
             document.getElementById('cancel-edit').style.display = 'inline-block';
         });
     });
-    
+
     // Handle cancel edit button
     document.getElementById('cancel-edit').addEventListener('click', function() {
         document.getElementById('form-title').textContent = 'Add New Portfolio Item';

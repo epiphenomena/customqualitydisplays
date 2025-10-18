@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $new_image_path = handle_image_upload('author_image', 'testimonial-author', 'testimonial author');
             if ($new_image_path) {
                 $new_item['author_image_url'] = $new_image_path;
-                
+
                 // If editing and there was an old image, remove it
                 if ($item_id !== null && isset($_POST['old_image']) && !empty($_POST['old_image']) && $_POST['old_image'] !== $new_image_path) {
                     remove_image_file($_POST['old_image']);
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $new_item['author_image_url'] = 'https://randomuser.me/api/portraits/men/1.jpg';
                 }
             }
-            
+
             if ($_POST['action'] === 'add') {
                 // Add new item to the end of the array
                 $testimonials['items'][] = $new_item;
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $item_id = $_POST['item_id'];
             if (isset($testimonials['items'][$item_id])) {
                 // Remove the image file if it exists
-                if (!empty($testimonials['items'][$item_id]['author_image_url']) && 
+                if (!empty($testimonials['items'][$item_id]['author_image_url']) &&
                     strpos($testimonials['items'][$item_id]['author_image_url'], 'https://randomuser.me/api/portraits/') !== 0) {
                     remove_image_file($testimonials['items'][$item_id]['author_image_url']);
                 }
@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($testimonials['items'][$item_id])) {
                 $items = &$testimonials['items'];
                 $count = count($items);
-                
+
                 if ($_POST['action'] === 'move_up' && $item_id > 0) {
                     // Swap with the previous item
                     $temp = $items[$item_id - 1];
@@ -116,21 +116,21 @@ include '../header.php';
                                 </div>
                                 <div class="testimonial-item-actions">
                                     <?php if ($index > 0): ?>
-                                        <form method="post" style="display:inline;">
+                                        <form method="post" style="display:inline; padding: 0;">
                                             <input type="hidden" name="action" value="move_up">
                                             <input type="hidden" name="item_id" value="<?php echo $index; ?>">
                                             <button type="submit" class="btn btn-secondary btn-sm">↑ Move Up</button>
                                         </form>
                                     <?php endif; ?>
                                     <?php if ($index < count($testimonials['items']) - 1): ?>
-                                        <form method="post" style="display:inline;">
+                                        <form method="post" style="display:inline; padding: 0;">
                                             <input type="hidden" name="action" value="move_down">
                                             <input type="hidden" name="item_id" value="<?php echo $index; ?>">
                                             <button type="submit" class="btn btn-secondary btn-sm">↓ Move Down</button>
                                         </form>
                                     <?php endif; ?>
                                     <button type="button" class="btn btn-primary btn-sm edit-btn" data-index="<?php echo $index; ?>">Edit</button>
-                                    <form method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this testimonial?');">
+                                    <form method="post" style="display:inline; padding: 0;" onsubmit="return confirm('Are you sure you want to delete this testimonial?');">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="item_id" value="<?php echo $index; ?>">
                                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
@@ -151,7 +151,7 @@ include '../header.php';
                     <input type="hidden" name="action" value="add" id="form-action">
                     <input type="hidden" name="item_id" value="" id="item-id">
                     <input type="hidden" name="old_image" value="" id="old-image">
-                    
+
                     <div class="form-group">
                         <label for="text">Testimonial Text</label>
                         <textarea id="text" name="text" placeholder="Enter the testimonial text" rows="5" required></textarea>
@@ -192,14 +192,14 @@ include '../header.php';
             const index = this.getAttribute('data-index');
             const testimonialItems = <?php echo json_encode($testimonials['items']); ?>;
             const item = testimonialItems[index];
-            
+
             document.getElementById('form-title').textContent = 'Edit Testimonial';
             document.getElementById('form-action').value = 'edit';
             document.getElementById('item-id').value = index;
             document.getElementById('text').value = item.text || '';
             document.getElementById('author_name').value = item.author_name || '';
             document.getElementById('author_role').value = item.author_role || '';
-            
+
             // Handle current image display
             if (item.author_image_url) {
                 document.getElementById('current-image').src = item.author_image_url;
@@ -209,11 +209,11 @@ include '../header.php';
                 document.getElementById('current-image-container').style.display = 'none';
                 document.getElementById('old-image').value = '';
             }
-            
+
             document.getElementById('cancel-edit').style.display = 'inline-block';
         });
     });
-    
+
     // Handle cancel edit button
     document.getElementById('cancel-edit').addEventListener('click', function() {
         document.getElementById('form-title').textContent = 'Add New Testimonial';
