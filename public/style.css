@@ -208,18 +208,21 @@ header {
     margin-bottom: 1.5rem;
 }
 
-.about-features {
+.about-content p {
+    margin-bottom: 1.5rem;
+}
+
+.about-content ul {
     list-style: none;
     margin-top: 1.5rem;
 }
 
-.about-features li {
-    margin-bottom: 0.8rem;
+.about-content li {
     display: flex;
     align-items: center;
 }
 
-.about-features li::before {
+.about-content li::before {
     content: '✓';
     color: var(--accent);
     font-weight: bold;
