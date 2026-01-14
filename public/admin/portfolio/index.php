@@ -18,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $item_id = $_POST['item_id'] ?? null;
             $new_item = [
                 'title' => $_POST['title'],
+                'category' => $_POST['category'],
                 'description' => $_POST['description'],
                 'full_description' => $_POST['full_description']
             ];
@@ -107,7 +108,7 @@ include '../header.php';
                         <?php foreach ($portfolio['items'] as $index => $item): ?>
                             <div class="portfolio-item-admin">
                                 <div class="portfolio-item-info">
-                                    <h3><?php echo htmlspecialchars($item['title']); ?></h3>
+                                    <h3><?php echo htmlspecialchars($item['title']); ?> <small style="color: #666; font-size: 0.8em;">(<?php echo htmlspecialchars($item['category'] ?? 'Specialized'); ?>)</small></h3>
                                     <p><?php echo htmlspecialchars($item['description']); ?></p>
                                 </div>
                                 <div class="portfolio-item-actions">
@@ -154,6 +155,15 @@ include '../header.php';
                     </div>
 
                     <div class="form-group">
+                        <label for="category">Category</label>
+                        <select id="category" name="category" required style="width: 100%; padding: 0.75rem; border: 1px solid #CED4DA; border-radius: 4px; background-color: #FFFFFF;">
+                            <option value="Commercial">Commercial</option>
+                            <option value="Residential">Residential</option>
+                            <option value="Specialized">Specialized</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label for="description">Description</label>
                         <textarea id="description" name="description" placeholder="Brief project description" rows="3" required></textarea>
                     </div>
@@ -193,6 +203,7 @@ include '../header.php';
             document.getElementById('form-action').value = 'edit';
             document.getElementById('item-id').value = index;
             document.getElementById('title').value = item.title || '';
+            document.getElementById('category').value = item.category || 'Specialized';
             document.getElementById('description').value = item.description || '';
             document.getElementById('full_description').value = item.full_description || '';
 
@@ -216,6 +227,7 @@ include '../header.php';
         document.getElementById('form-action').value = 'add';
         document.getElementById('item-id').value = '';
         document.getElementById('title').value = '';
+        document.getElementById('category').value = 'Commercial';
         document.getElementById('description').value = '';
         document.getElementById('full_description').value = '';
         document.getElementById('image').value = '';

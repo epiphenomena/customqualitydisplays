@@ -24,24 +24,79 @@ $processed_content = $parsedown->text($hero_content);
     <?php
     // Load portfolio data from JSON file
     $portfolio_data = json_decode(file_get_contents('data/portfolio.json'), true);
+    
+    // Categorize items
+    $categories = [
+        'Commercial' => [],
+        'Residential' => [],
+        'Specialized' => []
+    ];
+    
+    if (isset($portfolio_data['items'])) {
+        foreach ($portfolio_data['items'] as $item) {
+            $cat = isset($item['category']) ? $item['category'] : 'Specialized';
+            if (array_key_exists($cat, $categories)) {
+                $categories[$cat][] = $item;
+            } else {
+                $categories['Specialized'][] = $item; // Default fallback
+            }
+        }
+    }
     ?>
     <section id="portfolio" class="section portfolio">
         <div class="container">
-            <h2 class="section-title"><?php echo htmlspecialchars($portfolio_data['title']); ?></h2>
-            <div class="portfolio-grid">
-                <!-- Portfolio Items -->
-                <?php foreach ($portfolio_data['items'] as $item): ?>
-                    <div class="portfolio-item" data-full-desc="<?php echo htmlspecialchars($item['full_description']); ?>">
-                        <img src="<?php echo htmlspecialchars($item['image_url']); ?>" alt="<?php echo htmlspecialchars($item['title']); ?>" class="portfolio-img">
-                        <div class="portfolio-text">
-                            <h3><?php echo htmlspecialchars($item['title']); ?></h3>
-                            <p><?php echo htmlspecialchars($item['description']); ?></p>
-                        </div>
+            
+            <div class="portfolio-columns">
+                <!-- Commercial Column -->
+                <div class="portfolio-column">
+                    <h3 class="column-title">Commercial</h3>
+                    <div class="column-items">
+                        <?php foreach ($categories['Commercial'] as $item): ?>
+                            <div class="portfolio-item" data-full-desc="<?php echo htmlspecialchars($item['full_description']); ?>">
+                                <img src="<?php echo htmlspecialchars($item['image_url']); ?>" alt="<?php echo htmlspecialchars($item['title']); ?>" class="portfolio-img">
+                                <div class="portfolio-text">
+                                    <h3><?php echo htmlspecialchars($item['title']); ?></h3>
+                                    <p><?php echo htmlspecialchars($item['description']); ?></p>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
-                    <?php endforeach; ?>
+                </div>
+
+                <!-- Residential Column -->
+                <div class="portfolio-column">
+                    <h3 class="column-title">Residential</h3>
+                    <div class="column-items">
+                        <?php foreach ($categories['Residential'] as $item): ?>
+                            <div class="portfolio-item" data-full-desc="<?php echo htmlspecialchars($item['full_description']); ?>">
+                                <img src="<?php echo htmlspecialchars($item['image_url']); ?>" alt="<?php echo htmlspecialchars($item['title']); ?>" class="portfolio-img">
+                                <div class="portfolio-text">
+                                    <h3><?php echo htmlspecialchars($item['title']); ?></h3>
+                                    <p><?php echo htmlspecialchars($item['description']); ?></p>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+
+                <!-- Specialized Column -->
+                <div class="portfolio-column">
+                    <h3 class="column-title">Specialized</h3>
+                    <div class="column-items">
+                        <?php foreach ($categories['Specialized'] as $item): ?>
+                            <div class="portfolio-item" data-full-desc="<?php echo htmlspecialchars($item['full_description']); ?>">
+                                <img src="<?php echo htmlspecialchars($item['image_url']); ?>" alt="<?php echo htmlspecialchars($item['title']); ?>" class="portfolio-img">
+                                <div class="portfolio-text">
+                                    <h3><?php echo htmlspecialchars($item['title']); ?></h3>
+                                    <p><?php echo htmlspecialchars($item['description']); ?></p>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
         <!-- Modal -->
     <div class="modal" id="imageModal">
