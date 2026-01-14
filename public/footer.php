@@ -16,9 +16,8 @@ if (!isset($settings_data)) {
                 <div class="footer-links">
                     <h3 class="footer-heading">Quick Links</h3>
                     <ul>
-                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#values">Our Values</a></li>
                         <li><a href="#portfolio">Our Work</a></li>
-                        <li><a href="#testimonials">Testimonials</a></li>
                         <li><a href="#contact">Get Estimate</a></li>
                     </ul>
                 </div>

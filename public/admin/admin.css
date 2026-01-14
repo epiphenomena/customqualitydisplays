@@ -86,23 +86,20 @@ form {
 }
 
 /* --- Portfolio & Testimonials Admin Styles --- */
-.portfolio-admin-list,
-.testimonials-admin-list {
+.portfolio-admin-list {
     background-color: #ffffff;
     border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 1.5rem;
 }
 
-.portfolio-items-container,
-.testimonials-items-container {
+.portfolio-items-container {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-.portfolio-item-admin,
-.testimonial-item-admin {
+.portfolio-item-admin {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -111,20 +108,17 @@ form {
     border-radius: 4px;
 }
 
-.portfolio-item-info,
-.testimonial-item-info {
+.portfolio-item-info {
     flex: 1;
 }
 
-.portfolio-item-actions,
-.testimonial-item-actions {
+.portfolio-item-actions {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
 }
 
-.portfolio-item-actions form,
-.testimonial-item-actions form {
+.portfolio-item-actions form {
     margin: 0;
 }
 

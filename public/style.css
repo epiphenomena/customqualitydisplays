@@ -125,8 +125,8 @@ ul {
     margin-bottom: 2rem;
 }
 
-/* About Section */
-#about {
+/* Values Section */
+#values {
     background: linear-gradient(to right, var(--primary), #3a506b);
     color: var(--light);
 
@@ -138,37 +138,37 @@ ul {
     background-color: var(--secondary);
     }
 }
-.about-content {
+.values-content {
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
 }
 
 @media (min-width: 768px) {
-    .about-content {
+    .values-content {
         grid-template-columns: 1fr 1fr;
     }
 }
 
-.about-text h2 {
+.values-text h2 {
     margin-bottom: 1.5rem;
 }
 
-.about-content p {
+.values-content p {
     margin-bottom: 1.5rem;
 }
 
-.about-content ul {
+.values-content ul {
     list-style: none;
     margin-top: 1.5rem;
 }
 
-.about-content li {
+.values-content li {
     display: flex;
     align-items: center;
 }
 
-.about-content li::before {
+.values-content li::before {
     content: '✓';
     color: var(--accent);
     font-weight: bold;

@@ -56,28 +56,28 @@ $processed_content = $parsedown->text($hero_content);
         </div>
     </div>
 
-    <!-- About Section -->
+    <!-- Values Section -->
     <?php
-    // Load about data from JSON file
-    $about_data = json_decode(file_get_contents('data/about.json'), true);
+    // Load values data from JSON file
+    $values_data = json_decode(file_get_contents('data/values.json'), true);
 
     // Include Parsedown for markdown processing
     require_once 'Parsedown.php';
     $parsedown = new Parsedown();
 
     // Process markdown content
-    $processed_content = $parsedown->text($about_data['content']);
+    $processed_content = $parsedown->text($values_data['content']);
     ?>
-    <section id="about" class="section">
+    <section id="values" class="section">
         <div class="container">
-            <h2 class="section-title"><?php echo htmlspecialchars($about_data['title']); ?></h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <h2><?php echo htmlspecialchars($about_data['subtitle']); ?></h2>
+            <h2 class="section-title"><?php echo htmlspecialchars($values_data['title']); ?></h2>
+            <div class="values-content">
+                <div class="values-text">
+                    <h2><?php echo htmlspecialchars($values_data['subtitle']); ?></h2>
                     <?php echo $processed_content; ?>
                 </div>
-                <div class="about-img">
-                    <img src="<?php echo htmlspecialchars($about_data['image_url']); ?>" alt="Craftsman working on custom cabinet">
+                <div class="values-img">
+                    <img src="<?php echo htmlspecialchars($values_data['image_url']); ?>" alt="Craftsman working on custom cabinet">
                 </div>
             </div>
         </div>

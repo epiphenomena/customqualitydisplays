@@ -18,9 +18,9 @@ Transform a static single-page website into a data-driven content management sys
 - **Markdown Processing**: Use Parsedown to convert to HTML
 - **Special Handling**: Add `.btn` class to the last link in the hero section via JavaScript in `script.js`
 
-### 2. About Section (Implemented)
-- **Data File**: `data/about.json`
-- **Admin Page**: `admin/about/index.php`
+### 2. Values Section (Implemented)
+- **Data File**: `data/values.json`
+- **Admin Page**: `admin/values/index.php`
 - **Content**: Single markdown field for all content, with title and subtitle as separate fields
 - **Image Handling**: Image upload functionality with file cleanup
 - **Special Handling**: Use Parsedown for markdown processing
@@ -49,30 +49,7 @@ Transform a static single-page website into a data-driven content management sys
   - Image cleanup when items are deleted
 - **Frontend Display**: Maintain existing structure and functionality
 
-### 4. Testimonials Section (Implemented)
-- **Data File**: `data/testimonials.json`
-- **Admin Page**: `admin/testimonials/index.php`
-- **Content Structure**:
-  ```json
-  {
-    "title": "What Our Clients Say",
-    "items": [
-      {
-        "text": "Testimonial text",
-        "author_name": "Author Name",
-        "author_role": "Author Role",
-        "author_image_url": "/media/testimonial-image.jpg"
-      }
-    ]
-  }
-  ```
-- **Admin Features**:
-  - Add/edit/delete functionality for testimonials
-  - Image upload for author images
-  - Move up/down buttons to reorder items
-  - Image cleanup when items are deleted
-
-### 5. Contact Section (No Changes Needed)
+### 4. Contact Section (No Changes Needed)
 - Information already in `data/settings.json` and used in footer
 - No separate data file or admin page needed
 
@@ -89,7 +66,7 @@ Transform a static single-page website into a data-driven content management sys
 - Use existing admin header/footer structure
 - Include image upload functionality using existing `image_utils.php`
 - Implement proper image cleanup when content is deleted
-- Add reorder functionality for portfolio and testimonials with move up/down buttons
+- Add reorder functionality for portfolio with move up/down buttons
 
 ### Image Management
 - Store all images in `/media/` directory
@@ -115,25 +92,24 @@ Transform a static single-page website into a data-driven content management sys
 
 ## Implementation Order
 1. Portfolio section (most complex)
-2. About section 
-3. Testimonials section
-4. Hero section
-5. Update admin dashboard
-6. Add reorder functionality to portfolio and testimonials
-7. Convert about section to markdown
-8. Position admin forms to the right of item lists
+2. Values section 
+3. Hero section
+4. Update admin dashboard
+5. Add reorder functionality to portfolio
+6. Convert values section to markdown
+7. Position admin forms to the right of item lists
 
 ## Testing Requirements
 - Verify all content displays correctly after conversion
 - Ensure admin forms save and retrieve data properly
 - Test image upload and cleanup functionality
-- Verify reorder functionality works for portfolio and testimonials
+- Verify reorder functionality works for portfolio
 - Confirm contact information continues to pull from settings.json
 - Ensure no content is lost during the conversion process
 
 ## Special Considerations
-- Portfolio and testimonials sections need reordering functionality
+- Portfolio section needs reordering functionality
 - Image files must be properly cleaned up when content items are deleted
 - The hero section link needs the `.btn` class added via JavaScript
-- The about section uses markdown for flexible content formatting
+- The values section uses markdown for flexible content formatting
 - Maintain backward compatibility with existing CSS and JavaScript functionality
