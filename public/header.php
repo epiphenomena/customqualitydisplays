@@ -58,16 +58,5 @@ $social_media_card = $settings_data['social-media-card'];
 <body>
     <!-- Header -->
     <header>
-        <div class="container nav-container">
-            <a href="#" class="logo">QualityCustom<span>Displays</span></a>
-            <button class="hamburger" id="hamburger">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu-icon lucide-menu"><path d="M4 12h16"/><path d="M4 18h16"/><path d="M4 6h16"/></svg>
-            </button>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#about">About</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
+
     </header>

@@ -4,8 +4,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the form data
     $name = trim($_POST["name"]);
     $email = trim($_POST["email"]);
-    $phone = trim($_POST["phone"]);
-    $project = trim($_POST["project"]);
     $website = trim($_POST["website"]); // Honeypot field
 
     // Validate the data
@@ -36,13 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email_content = $isSpam ? "LIKELY SPAM - Honeypot field was filled\n\n" : "";
     $email_content .= "Name: $name\n";
     $email_content .= "Email: $email\n";
-    if (!empty($phone)) {
-        $email_content .= "Phone: $phone\n";
-    }
     if ($isSpam) {
         $email_content .= "Honeypot Field (Website): $website\n";
     }
-    $email_content .= "\nProject Description:\n$project\n";
 
     // Build the email headers
     $headers = "From: <$from>";
