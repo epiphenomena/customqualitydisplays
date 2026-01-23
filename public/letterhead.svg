@@ -1,0 +1,18 @@
+<svg viewBox="0 0 350 70" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <rect x="0" y="0" width="23" height="70" fill="#be945b"/>
+    <rect x="23" y="0" width="4" height="70" fill="#e3ccab"/>
+    <rect x="33" y="0" width="4" height="70" fill="#a9b1c7"/>
+    <rect x="37" y="0" width="23" height="70" fill="#213154"/>
+  </g>
+
+  <text
+    x="65"
+    y="30"
+    font-family="serif"
+    font-size="24"
+    text-anchor="left"
+    fill="hsl(221, 43%, 5%)">
+    Quality Custom Displays
+  </text>
+</svg>

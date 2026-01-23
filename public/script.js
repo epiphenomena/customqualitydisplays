@@ -54,12 +54,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function checkFormValidity() {
         const name = document.getElementById('name').value.trim();
         const email = document.getElementById('email').value.trim();
-        const project = document.getElementById('project').value.trim();
 
         // Simple email validation (check for @ and .)
         const emailValid = email.includes('@') && email.includes('.');
 
-        if (name && email && project && emailValid) {
+        if (name && email && emailValid) {
             submitBtn.disabled = false;
         } else {
             submitBtn.disabled = true;

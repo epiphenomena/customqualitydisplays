@@ -14,9 +14,12 @@ $processed_content = $parsedown->text($hero_content);
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container hero-content">
-            <?php echo $processed_content; ?>
-        </div>
+
+  <div class="hero-content">
+    <div class="hero-logo">
+      <!-- <img src="/images/qcd-mark.png" alt="Quality Custom Displays Logo"> -->
+    </div>
+</div>
     </section>
 
 
@@ -24,14 +27,14 @@ $processed_content = $parsedown->text($hero_content);
     <?php
     // Load portfolio data from JSON file
     $portfolio_data = json_decode(file_get_contents('data/portfolio.json'), true);
-    
+
     // Categorize items
     $categories = [
         'Commercial' => [],
         'Residential' => [],
         'Specialized' => []
     ];
-    
+
     if (isset($portfolio_data['items'])) {
         foreach ($portfolio_data['items'] as $item) {
             $cat = isset($item['category']) ? $item['category'] : 'Specialized';
@@ -45,7 +48,7 @@ $processed_content = $parsedown->text($hero_content);
     ?>
     <section id="portfolio" class="section portfolio">
         <div class="container">
-            
+
             <div class="portfolio-columns">
                 <!-- Commercial Column -->
                 <div class="portfolio-column">

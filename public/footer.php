@@ -14,12 +14,7 @@ if (!isset($settings_data)) {
                     <p>Custom Cabinets & Displays Crafted to Perfection</p>
                 </div>
                 <div class="footer-links">
-                    <h3 class="footer-heading">Quick Links</h3>
-                    <ul>
-                        <li><a href="#values">Our Values</a></li>
-                        <li><a href="#portfolio">Our Work</a></li>
-                        <li><a href="#contact">Get Estimate</a></li>
-                    </ul>
+
                 </div>
                 <div class="footer-contact">
                     <h3 class="footer-heading">Contact Us</h3>
