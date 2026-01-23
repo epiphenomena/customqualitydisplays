@@ -45,9 +45,7 @@ ul {
 }
 
 .container {
-    width: 90%;
     max-width: 1200px;
-    margin: 0 auto;
     padding: 0 1rem;
 }
 
@@ -103,8 +101,9 @@ ul {
 
 /* Hero Section */
 .hero {
-    width: 100vw;
-      height: 100vh;
+    aspect-ratio: 1536/1024;/* width / height of image */
+    width: 100%;
+      height: auto;
       background-image: url('/images/hero-light-stone.png');
       background-size: cover;
       background-position: center;
@@ -113,6 +112,17 @@ ul {
     text-align: center;
     opacity: 0;
     transition: opacity 1s ease-in-out;
+}
+
+@media (min-width: 768px) {
+    .hero {
+        height: 100vh;
+    }
+
+    .container {
+        width: 90%;
+        margin: 0 auto;
+    }
 }
 
 .hero::before {
@@ -542,10 +552,6 @@ footer {
 @media (max-width: 768px) {
     .hamburger {
         display: block;
-    }
-
-    header {
-        padding: 0.8rem 0;
     }
 
     .nav-container {
