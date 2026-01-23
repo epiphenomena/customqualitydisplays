@@ -11,7 +11,8 @@ if (!isset($settings_data)) {
             <div class="footer-content">
                 <div class="footer-about">
                     <div class="footer-logo">QualityCustom<span>Displays</span></div>
-                    <p>Custom Cabinets & Displays Crafted to Perfection</p>
+                    <p>Architectural millwork and integrated display systems.</p>
+                    <p>Wood, glass, and lighting—designed, built, and installed.</p>
                 </div>
                 <div class="footer-links">
 
