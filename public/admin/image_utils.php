@@ -51,7 +51,7 @@ function handle_image_upload($file_input_name, $filename, $description, $allowed
 
     // Move the uploaded file to the destination
     if (move_uploaded_file($_FILES[$file_input_name]['tmp_name'], $upload_path)) {
-        return "/" . $upload_dir . $final_filename;
+        return $upload_dir . $final_filename;
     }
 
     return false;
