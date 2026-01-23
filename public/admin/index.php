@@ -16,21 +16,15 @@ include 'header.php';
             </div>
             
             <div class="admin-card">
-                <h3>Hero Section</h3>
-                <p>Manage hero section content</p>
-                <a href="hero/" class="btn btn-primary">Edit Hero Content</a>
+                <h3>Portfolio</h3>
+                <p>Manage portfolio items</p>
+                <a href="portfolio/" class="btn btn-primary">Manage Portfolio</a>
             </div>
             
             <div class="admin-card">
                 <h3>Values Section</h3>
                 <p>Manage values section content</p>
                 <a href="values/" class="btn btn-primary">Edit Values Content</a>
-            </div>
-            
-            <div class="admin-card">
-                <h3>Portfolio</h3>
-                <p>Manage portfolio items</p>
-                <a href="portfolio/" class="btn btn-primary">Manage Portfolio</a>
             </div>
         </div>
     </div>

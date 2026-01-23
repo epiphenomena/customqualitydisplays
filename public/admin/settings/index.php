@@ -74,26 +74,31 @@ include '../header.php';
             <div class="form-group">
                 <label for="site-title">Site Title</label>
                 <input type="text" id="site-title" name="site-title" placeholder="Quality Custom Displays" value="<?php echo htmlspecialchars($settings['site-title']); ?>">
+                <small class="form-help">The main title of the website, displayed in the browser tab and search engine results.</small>
             </div>
 
             <div class="form-group">
                 <label for="site-description">Site Description</label>
                 <textarea id="site-description" name="site-description" placeholder="Custom cabinets and displays crafted to perfection."><?php echo htmlspecialchars($settings['site-description']); ?></textarea>
+                <small class="form-help">A brief description of your business for search engines (SEO meta description).</small>
             </div>
 
             <div class="form-group">
                 <label for="contact-email">Contact Email</label>
                 <input type="email" id="contact-email" name="contact-email" placeholder="info@qualitycustomdisplays.com" value="<?php echo htmlspecialchars($settings['contact-email']); ?>">
+                <small class="form-help">The email address where customers can reach you; displayed on the contact page.</small>
             </div>
 
             <div class="form-group">
                 <label for="phone-number">Phone Number</label>
                 <input type="text" id="phone-number" name="phone-number" placeholder="(555) 123-4567" value="<?php echo htmlspecialchars($settings['phone-number']); ?>">
+                <small class="form-help">The business phone number displayed in the header and contact page.</small>
             </div>
 
             <div class="form-group">
                 <label for="street-address">Street Address</label>
                 <input type="text" id="street-address" name="street-address" placeholder="123 Main Street, City, State 12345" value="<?php echo htmlspecialchars($settings['street-address']); ?>">
+                <small class="form-help">The physical business address displayed in the footer and contact page.</small>
             </div>
 
             <div class="form-group">
