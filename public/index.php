@@ -15,11 +15,11 @@ $processed_content = $parsedown->text($hero_content);
     <!-- Hero Section -->
     <section class="hero">
 
-  <div class="hero-content">
-    <div class="hero-logo">
-      <!-- <img src="/images/qcd-mark.png" alt="Quality Custom Displays Logo"> -->
-    </div>
-</div>
+  <div class="hero-text-overlay">
+    <h1>Quality Custom Displays</h1>
+    <h2>Architectural millwork and integrated display systems.</h2>
+    <h2>Wood, glass, and lighting&mdash;designed, built, and installed.</h2>
+  </div>
     </section>
 
 
