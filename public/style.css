@@ -135,6 +135,7 @@ ul {
         margin: 0;
         line-height: 1.2;
         padding-top: 1em;
+        text-wrap: balance;
         &:first-of-type {
             background-image: linear-gradient(var(--dark), var(--dark));
             background-size: 60% 2px; /* Width 60%, Height 2px */
@@ -499,6 +500,7 @@ footer {
     gap: 2rem;
     margin-bottom: 2rem;
     font-size: 0.9rem;
+    text-wrap: balance;
 }
 
 @media (min-width: 768px) {
