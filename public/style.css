@@ -65,7 +65,7 @@ ul {
     text-align: center;
     margin-bottom: 3rem;
     font-size: 2.2rem;
-    color: var(--primary);
+    color: var(--dark);
     position: relative;
 }
 
@@ -117,25 +117,30 @@ ul {
 
 .hero-text-overlay {
     padding-top: 50vh;
-
+    position: relative;
     box-sizing: border-box;
     text-align: center;
 
     & h1 {
         color: var(--dark);
-        font-size: 3rem;
+        font-size: 2.75rem;
         margin: 0;
         line-height: 1.2;
-        border-bottom: 1px solid;
     padding-bottom: 1em;
     }
 
    & h2 {
         color: var(--primary);
-        font-size: 1.7rem;
+        font-size: 1.2rem;
         margin: 0;
         line-height: 1.2;
         padding-top: 1em;
+        &:first-of-type {
+            background-image: linear-gradient(var(--dark), var(--dark));
+            background-size: 60% 2px; /* Width 60%, Height 2px */
+            background-repeat: no-repeat;
+            background-position: center top;
+        }
     }
   }
 
@@ -247,7 +252,7 @@ ul {
 .column-title {
     text-align: center;
     font-size: 1.8rem;
-    color: var(--primary);
+    color: var(--dark);
     margin-bottom: 2.5rem;
     position: relative;
 }
@@ -493,6 +498,7 @@ footer {
     grid-template-columns: 1fr;
     gap: 2rem;
     margin-bottom: 2rem;
+    font-size: 0.9rem;
 }
 
 @media (min-width: 768px) {
@@ -512,7 +518,7 @@ footer {
     color: var(--secondary);
 }
 
-.footer-about p { font-size: 90%;}
+.footer-about p { font-size: 0.8rem;}
 
 .footer-heading {
     font-size: 1.2rem;
