@@ -29,7 +29,7 @@ function handle_image_upload($file_input_name, $filename, $description, $allowed
     }
 
     // Ensure upload directory exists
-    $full_upload_path = __DIR__ . '/../' . $upload_dir;
+    $full_upload_path = __DIR__ . '/../' . $upload_dir . '/';
     if (!is_dir($full_upload_path)) {
         mkdir($full_upload_path, 0755, true);
     }
@@ -39,7 +39,7 @@ function handle_image_upload($file_input_name, $filename, $description, $allowed
     $upload_path = $full_upload_path . $final_filename;
 
     // Get the absolute path for the old file to remove it if it exists
-    $old_file_path = $upload_dir . $filename . '.*'; // Wildcard to match any extension
+    $old_file_path = $upload_dir . '/' . $filename . '.*'; // Wildcard to match any extension
     $existing_files = glob(__DIR__ . '/../' . $old_file_path);
 
     // Remove any existing files with the same base name but different extensions
@@ -51,7 +51,7 @@ function handle_image_upload($file_input_name, $filename, $description, $allowed
 
     // Move the uploaded file to the destination
     if (move_uploaded_file($_FILES[$file_input_name]['tmp_name'], $upload_path)) {
-        return $upload_dir . $final_filename;
+        return '/' . $upload_dir . '/' . $final_filename;
     }
 
     return false;
@@ -68,7 +68,8 @@ function remove_image_file($current_image_path) {
         return true; // Nothing to remove
     }
 
-    $full_path = __DIR__ . '/../' . $current_image_path;
+    $trimmed_path = ltrim($current_image_path, '/');
+    $full_path = __DIR__ . '/../' . $trimmed_path;
     if (file_exists($full_path)) {
         return unlink($full_path);
     }

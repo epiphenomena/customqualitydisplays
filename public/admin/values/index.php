@@ -92,7 +92,7 @@ This is a paragraph.
                 <?php if (!empty($values['image_url'])): ?>
                     <div class="image-preview">
                         <p>Current image:</p>
-                        <img src="/<?php echo $values['image_url']; ?>" alt="Current values image" style="max-width: 300px; max-height: 200px;">
+                        <img src="<?php echo $values['image_url']; ?>" alt="Current values image" style="max-width: 300px; max-height: 200px;">
                         <div>
                             <button type="submit" name="remove-image" value="1" class="btn btn-danger btn-sm"
                                 onclick="return confirm('Are you sure you want to remove this image?')">Remove Image</button>

@@ -24,13 +24,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ];
 
             // Handle portfolio item image upload
-            $new_image_path = handle_image_upload('image', 'portfolio-item', 'portfolio item');
+            $unique_filename = 'portfolio-item-' . uniqid();
+            $new_image_path = handle_image_upload('image', $unique_filename, 'portfolio item');
             if ($new_image_path) {
                 $new_item['image_url'] = $new_image_path;
 
                 // If editing and there was an old image, remove it
                 if ($item_id !== null && isset($_POST['old_image']) && !empty($_POST['old_image']) && $_POST['old_image'] !== $new_image_path) {
-                    remove_image_file($_POST['old_image']);
+                    // Only remove if it's a local file (not an external URL)
+                    if (strpos($_POST['old_image'], 'http') !== 0) {
+                        remove_image_file($_POST['old_image']);
+                    }
                 }
             } else {
                 // If no new image uploaded but there was an old one, keep it
@@ -49,8 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } elseif ($_POST['action'] === 'delete') {
             $item_id = $_POST['item_id'];
             if (isset($portfolio['items'][$item_id])) {
-                // Remove the image file if it exists
-                if (!empty($portfolio['items'][$item_id]['image_url'])) {
+                // Remove the image file if it exists and is local
+                if (!empty($portfolio['items'][$item_id]['image_url']) && strpos($portfolio['items'][$item_id]['image_url'], 'http') !== 0) {
                     remove_image_file($portfolio['items'][$item_id]['image_url']);
                 }
                 // Remove the portfolio item
